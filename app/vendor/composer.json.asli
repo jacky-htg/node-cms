@@ -1,0 +1,7 @@
+{
+    "require": {
+        "volnix/csrf": "dev-master",
+        "facebook/php-sdk-v4" : "4.0.*",
+        "cboden/ratchet": "0.3.*"
+    }
+}
