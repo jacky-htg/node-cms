@@ -1,1 +1,0 @@
-<script src="/public/ajax/login.js"></script>
