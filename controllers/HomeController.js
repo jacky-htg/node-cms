@@ -6,7 +6,7 @@ exports.Index = function(request, response){
     response.redirect('/login')
   }
   else {
-    console.log(request.session.token);
+    console.log(request.session.token)
     response.title = 'Hello World'
     response.render('home/Index', response)
   }

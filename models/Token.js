@@ -2,6 +2,7 @@ const querystring = require('querystring')
 const req = require('request')
 
 exports.GetToken = function(request, callback) {
+  
   var form = {
       email: request.body.email,
       password: request.body.password
@@ -13,10 +14,10 @@ exports.GetToken = function(request, callback) {
       headers: {
         'Content-Length': contentLength,
         'Content-Type': 'application/x-www-form-urlencoded',
-        'api_key': request.config.apiKey,
+        'api_key': request.config.api.apiKey,
       },
-      'Accept': 'application/json'
-      uri: request.config.prefixUri + '/get-token',
+      'Accept': 'application/json',
+      uri: request.config.api.prefixUri+'/get-token',
       body: formData,
       method: 'POST'
     }, function (err, res, body) {

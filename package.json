@@ -1,5 +1,5 @@
 {
-  "name": "aji_cms",
+  "name": "aji-backend",
   "version": "1.0.0",
   "description": "CMS for AJI Social Media",
   "main": "app.js",
