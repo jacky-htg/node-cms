@@ -1,15 +1,16 @@
+//express
 const express = require('express')
-const config = require('./config')
 const http = require('http')
-const path = require('path')
-const bodyParser = require('body-parser')
 const app = express()
 
+// config
+const config = require('./config')
+app.use(config())
+
+// session
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
-
-app.use(config())
 
 app.use(session({ secret: 'keyboard cat',
     resave: false,
@@ -18,25 +19,43 @@ app.use(session({ secret: 'keyboard cat',
     cookie: { maxAge: 3600000,secure: false, httpOnly: true }
   })
 )
-
-app.use(bodyParser.urlencoded({ extended: true }))
 app.use(flash())
 
+// to get post data on body
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// routing
 require('./route/router')(app)
+
+// views and staticpath
+const path = require('path')
+app.set('views', path.join(__dirname, 'views'))
+app.use(express.static(path.join(__dirname, 'public')))
+
+// view engine handlebars
 var handlebars  = require('express-handlebars'), hbs
 var handlebars_sections = require('express-handlebars-sections')
 
-app.set('views', path.join(__dirname, 'views'))
 hbs = handlebars.create({
-   defaultLayout: 'Main'
+   defaultLayout: 'Main',
+   partialsDir: 'views/partials/',
+   helpers: {
+        equal: function (v1, v2, options) {
+          if(v1 === v2) {
+            return options.fn(this);
+          }
+          return options.inverse(this);
+        }
+    }
 })
+
+
 
 handlebars_sections(hbs)
 
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
-
-app.use(express.static(path.join(__dirname, 'public')))
 
 http.createServer(app).listen(3000, function(){
   console.log('Express server listening on port 3000')
