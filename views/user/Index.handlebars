@@ -33,7 +33,7 @@
                             <ul class="nav navbar-right panel_toolbox">
                               <li><form><a href="/users/edit/{{this.ID}}" class="edit-link" data-id="{{this.ID}}"><i style="color:#555;" class="fa fa-pencil-square-o"></i></a></form>
                               </li>
-                              <li><form action="/users/delete/{{this.ID}}" method="post"><input type="hidden" name="_method" value="delete"><a onclick="$(this).parent().submit()" class="delete-link" data-id="{{this.ID}}"><i style="color:#555;" class="fa fa-trash-o"></i></a></form>
+                              <li><form action="/users/delete/{{this.ID}}" method="post"><input type="hidden" name="_method" value="delete"><a onclick="if(confirm('sure delete this data? #{{this.Name}}'))$(this).parent().submit();" class="delete-link" data-id="{{this.ID}}"><i style="color:#555;" class="fa fa-trash-o"></i></a></form>
                               </li>
                             </ul>
                           </td>
