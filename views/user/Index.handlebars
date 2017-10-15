@@ -31,9 +31,9 @@
                           <td>{{this.Group.Name}}</td>
                           <td class="action-nav">
                             <ul class="nav navbar-right panel_toolbox">
-                              <li><a class="edit-link" data-id="{{this.ID}}"><i style="color:#555;" class="fa fa-pencil-square-o"></i></a>
+                              <li><form><a href="/users/edit/{{this.ID}}" class="edit-link" data-id="{{this.ID}}"><i style="color:#555;" class="fa fa-pencil-square-o"></i></a></form>
                               </li>
-                              <li><a class="delete-link" data-id="{{this.ID}}"><i style="color:#555;" class="fa fa-trash-o"></i></a>
+                              <li><form action="/users/delete/{{this.ID}}" method="post"><input type="hidden" name="_method" value="delete"><a onclick="$(this).parent().submit()" class="delete-link" data-id="{{this.ID}}"><i style="color:#555;" class="fa fa-trash-o"></i></a></form>
                               </li>
                             </ul>
                           </td>
@@ -50,28 +50,28 @@
           </div>
 
         {{#section 'endscript'}}
-        <script src="../vendors/fastclick/lib/fastclick.js"></script>
+        <script src="/vendors/fastclick/lib/fastclick.js"></script>
         <!-- NProgress -->
-        <script src="../vendors/nprogress/nprogress.js"></script>
+        <script src="/vendors/nprogress/nprogress.js"></script>
         <!-- Datatables -->
-        <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-        <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-        <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-        <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-        <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-        <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-        <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-        <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-        <script src="../vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
-        <script src="../vendors/jszip/dist/jszip.min.js"></script>
-        <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-        <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+        <script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+        <script src="/vendors/jszip/dist/jszip.min.js"></script>
+        <script src="/vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
 
         <!-- Custom Theme Scripts -->
-        <script src="../build/js/custom.min.js"></script>
+        <script src="/build/js/custom.min.js"></script>
 
         <!-- Datatables -->
         <script>
