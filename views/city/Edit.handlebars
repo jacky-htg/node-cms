@@ -3,7 +3,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Users Management <small>Edit User</small></h2>
+                    <h2>Cities Management <small>Edit City</small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -11,42 +11,13 @@
                     <form class="form-horizontal form-label-left" novalidate method="post">
                       <input type="hidden" name="_method" value="put">
 
-                      <span class="section">User</span>
+                      <span class="section">City</span>
 
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text" {{#if form}}value="{{form.Name}}"{{/if}}>
-                        </div>
-                      </div>
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telephone <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12" {{#if form}}value="{{form.Phone}}"{{/if}}>
-                        </div>
-                      </div>
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="group_id">Group <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select id="group_id" required="required" name="group_id" class="form-control col-md-7 col-xs-12">
-                            {{#each groups}}
-                            <option value="{{this.ID}}" {{#if ../form}} {{#equal ../form.Group.ID this.ID}}selected{{/equal}}{{/if}}>{{this.Name}}</option>
-                            {{/each}}
-                          </select>
-                        </div>
-                      </div>
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city_id">City <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select id="city_id" required="required" name="city_id" class="form-control col-md-7 col-xs-12">
-                            {{#each cities}}
-                            <option value="{{this.ID}}" {{#if ../form}} {{#equal ../form.City.ID this.ID}}selected{{/equal}}{{/if}}>{{this.Name}}</option>
-                            {{/each}}
-                          </select>
+                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="name" required="required" type="text" {{#if form}}value="{{form.Name}}"{{/if}}>
                         </div>
                       </div>
                       <div class="ln_solid"></div>
