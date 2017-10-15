@@ -1,0 +1,115 @@
+          <div class="">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Groups Management</h2>
+                    <a class="nav navbar-right" href="/groups/create"><button>Create New</button></a>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th class="action-nav">Action</th>
+                        </tr>
+                      </thead>
+
+
+                      <tbody>
+                        {{#each groups}}
+                        <tr>
+                          <td>{{this.Name}}</td>
+                          <td class="action-nav">
+                            <ul class="nav navbar-right panel_toolbox">
+                              <li><form><a href="/groups/edit/{{this.ID}}" class="edit-link" data-id="{{this.ID}}"><i style="color:#555;" class="fa fa-pencil-square-o"></i></a></form>
+                              </li>
+                              <li><form action="/groups/delete/{{this.ID}}" method="post"><input type="hidden" name="_method" value="delete"><a onclick="if(confirm('sure delete this data? #{{this.Name}}'))$(this).parent().submit();" class="delete-link" data-id="{{this.ID}}"><i style="color:#555;" class="fa fa-trash-o"></i></a></form>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        {{#section 'endscript'}}
+        <script src="/vendors/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="/vendors/nprogress/nprogress.js"></script>
+        <!-- Datatables -->
+        <script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+        <script src="/vendors/jszip/dist/jszip.min.js"></script>
+        <script src="/vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+        <!-- Custom Theme Scripts -->
+        <script src="/build/js/custom.min.js"></script>
+
+        <!-- Datatables -->
+        <script>
+          $(document).ready(function() {
+            var handleDataTableButtons = function() {
+              if ($("#datatable-buttons").length) {
+                $("#datatable-buttons").DataTable({
+                  dom: "Bfrtip",
+                  buttons: [
+                    {
+                      extend: "copy",
+                      className: "btn-sm"
+                    },
+                    {
+                      extend: "csv",
+                      className: "btn-sm"
+                    },
+                    {
+                      extend: "excel",
+                      className: "btn-sm"
+                    },
+                    {
+                      extend: "pdfHtml5",
+                      className: "btn-sm"
+                    },
+                    {
+                      extend: "print",
+                      className: "btn-sm"
+                    },
+                  ],
+                  responsive: true
+                });
+              }
+            };
+
+            TableManageButtons = function() {
+              "use strict";
+              return {
+                init: function() {
+                  handleDataTableButtons();
+                }
+              };
+            }();
+
+            TableManageButtons.init();
+          });
+        </script>
+        <!-- /Datatables -->
+        {{/section}}
