@@ -2,6 +2,7 @@ const HomeController = require('../controllers/HomeController')
 const UserController = require('../controllers/UserController')
 const CityController = require('../controllers/CityController')
 const GroupController = require('../controllers/GroupController')
+const MembershipController = require('../controllers/MembershipController')
 
 module.exports = function(app){
     app.get('/', HomeController.Index)
@@ -30,5 +31,13 @@ module.exports = function(app){
     app.put('/groups/edit/:id', GroupController.Edit)
     app.delete('/groups/delete/:id', GroupController.Delete)
     //app.get('/groups/grant/:id', GroupController.GrantForm)
+
+    app.get('/memberships', MembershipController.Index)
+    app.get('/memberships/:userid', MembershipController.List)
+    app.get('/memberships/:userid/create', MembershipController.CreateForm)
+    app.post('/memberships/:userid/create', MembershipController.Create)
+    app.get('/memberships/:userid/edit/:id', MembershipController.EditForm)
+    app.put('/memberships/:userid/edit/:id', MembershipController.Edit)
+    app.delete('/memberships/:userid/delete/:id', MembershipController.Delete)
 
 }
