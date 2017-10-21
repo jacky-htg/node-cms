@@ -3,6 +3,7 @@ const UserController = require('../controllers/UserController')
 const CityController = require('../controllers/CityController')
 const GroupController = require('../controllers/GroupController')
 const MembershipController = require('../controllers/MembershipController')
+const EventController = require('../controllers/EventController')
 
 module.exports = function(app){
     app.get('/', HomeController.Index)
@@ -39,5 +40,14 @@ module.exports = function(app){
     app.get('/memberships/:userid/edit/:id', MembershipController.EditForm)
     app.put('/memberships/:userid/edit/:id', MembershipController.Edit)
     app.delete('/memberships/:userid/delete/:id', MembershipController.Delete)
+
+    app.get('/events', EventController.Index)
+    app.get('/events/:id/reservations', EventController.Reservations)
+    app.put('/events/:eventid/reservations/:id/approved', EventController.ReservationApproved)
+    app.get('/events/create', EventController.CreateForm)
+    app.post('/events/create', EventController.Create)
+    app.get('/events/edit/:id', EventController.EditForm)
+    app.put('/events/edit/:id', EventController.Edit)
+    app.delete('/events/delete/:id', EventController.Delete)
 
 }
