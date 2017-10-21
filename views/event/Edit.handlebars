@@ -1,0 +1,114 @@
+          <div class="">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Event Management <small>Edit Event</small></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <form class="form-horizontal form-label-left" novalidate method="post">
+                      <input type="hidden" name="_method" value="put">
+
+                      <span class="section">Event</span>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="title" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="title" required="required" type="text" {{#if form}}value="{{form.Title}}"{{/if}}>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="time">Time <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="time" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="time" required="required" type="text" {{#if form}}value="{{form.Time}}"{{/if}}>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location">Location <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="location" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="location" required="required" type="text" {{#if form}}value="{{form.Location}}"{{/if}}>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="content">Content <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <textarea id="content" class="form-control col-md-7 col-xs-12" name="content">{{#if form}}{{form.Content}}{{/if}}</textarea>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fee">Fee <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="fee" class="form-control col-md-7 col-xs-12" name="fee" required="required" type="number" {{#if form}}value="{{form.Fee}}"{{/if}}>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quota">Quota <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="quota" class="form-control col-md-7 col-xs-12" name="quota" required="required" type="number" {{#if form}}value="{{form.Quota}}"{{/if}}>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <button type="submit" class="btn btn-primary">Cancel</button>
+                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {{#section 'endscript'}}
+          <!-- FastClick -->
+          <script src="/vendors/fastclick/lib/fastclick.js"></script>
+          <!-- NProgress -->
+          <script src="/vendors/nprogress/nprogress.js"></script>
+          <!-- validator -->
+          <script src="/vendors/validator/validator.min.js"></script>
+
+          <!-- Custom Theme Scripts -->
+          <script src="/build/js/custom.min.js"></script>
+
+          <!-- validator -->
+          <script>
+            // initialize the validator function
+            validator.message.date = 'not a real date';
+
+            // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+            $('form')
+              .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+              .on('change', 'select.required', validator.checkField)
+              .on('keypress', 'input[required][pattern]', validator.keypress);
+
+            $('.multi.required').on('keyup blur', 'input', function() {
+              validator.checkField.apply($(this).siblings().last()[0]);
+            });
+
+            $('form').submit(function(e) {
+              e.preventDefault();
+              var submit = true;
+
+              // evaluate the form using generic validaing
+              if (!validator.checkAll($(this))) {
+                submit = false;
+              }
+
+              if (submit)
+                this.submit();
+
+              return false;
+            });
+          </script>
+          <!-- /validator -->
+          {{/section}}
