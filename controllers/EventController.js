@@ -108,7 +108,11 @@ exports.EditForm = function(request, response){
         response.flash_error        = request.flash('error')
         response.flash_warning      = request.flash('warning')
         response.form               = JSON.parse(body)
-        //console.log(response.form)
+        var time                    = response.form.Time.split(" ")
+        time = time[0]
+        time = time.split("-")
+        time = time[1]+'/'+time[2]+'/'+time[0]
+        response.form.Time = time
         response.render('event/Edit', response)
       }
       else {

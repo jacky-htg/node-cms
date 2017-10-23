@@ -53,7 +53,6 @@ exports.Create = function(request, callback) {
     form.end_period = form.end_period[2]+'-'+form.end_period[0]+'-'+form.end_period[1];
   }
 
-  console.log(form.start_period[0]);
   var formData = querystring.stringify(form)
   var contentLength = formData.length
 

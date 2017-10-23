@@ -1,35 +1,36 @@
 const Model  = require('../models/Model')
 const req    = require('request')
-const path   = 'events'
+const path   = 'boards'
 
 var form = function(request) {
-  var time = request.body.time.split("/")
+  var start_period = request.body.start_period.split("/")
+  var end_period = request.body.end_period.split("/")
 
-  if (Array.isArray(time)) {
-    time = time[2]+'-'+time[0]+'-'+time[1];
+  if (Array.isArray(start_period)) {
+    start_period = start_period[2]+'-'+start_period[0]+'-'+start_period[1];
   }
+  if (Array.isArray(end_period)) {
+    end_period = end_period[2]+'-'+end_period[0]+'-'+end_period[1];
+  }
+
+  var status = request.body.status
+  if(status === 'on') {
+    status = 1
+  }
+  else {
+    status = 0
+  }
+
+
   return {
-    title     : request.body.title,
-    time      : time,
-    location  : request.body.location,
-    content   : request.body.content,
-    fee       : request.body.fee,
-    quota     : request.body.quota
+    user_id         : request.body.user_id,
+    profile_picture : request.body.profile_picture,
+    position        : request.body.position,
+    division        : request.body.division,
+    start_period    : start_period,
+    end_period      : end_period,
+    status          : status
   }
-}
-
-exports.Approved = function(request, callback) {
-  req({
-      headers: {
-        'api_key': request.config.api.apiKey,
-        'token'  : request.session.token,
-      },
-      'Accept': 'application/json',
-      uri: request.config.api.prefixUri+'/'+path+'/'+request.params.eventid+'/reservations/'+request.params.id,
-      method: 'PUT'
-    }, function (err, res, body) {
-      callback(err, res, body)
-  })
 }
 
 exports.List = function(request, callback) {
