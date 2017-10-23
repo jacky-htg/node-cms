@@ -98,7 +98,6 @@ exports.EditForm = function(request, response){
         end = end[1]+'/'+end[2]+'/'+end[0]
         response.form.End = end
 
-        console.log(response.form)
         response.render('membership/Edit', response)
       }
       else {

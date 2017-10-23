@@ -4,6 +4,7 @@ const CityController = require('../controllers/CityController')
 const GroupController = require('../controllers/GroupController')
 const MembershipController = require('../controllers/MembershipController')
 const EventController = require('../controllers/EventController')
+const BoardController = require('../controllers/BoardController')
 
 module.exports = function(app){
     app.get('/', HomeController.Index)
@@ -49,5 +50,12 @@ module.exports = function(app){
     app.get('/events/edit/:id', EventController.EditForm)
     app.put('/events/edit/:id', EventController.Edit)
     app.delete('/events/delete/:id', EventController.Delete)
+
+    app.get('/boards', BoardController.Index)
+    app.get('/boards/create', BoardController.CreateForm)
+    app.post('/boards/create', BoardController.Create)
+    app.get('/boards/edit/:id', BoardController.EditForm)
+    app.put('/boards/edit/:id', BoardController.Edit)
+    app.delete('/boards/delete/:id', BoardController.Delete)
 
 }

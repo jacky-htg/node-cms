@@ -3,7 +3,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Event Management <small>Edit Event</small></h2>
+                    <h2>Board Management <small>Edit Board</small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -11,49 +11,60 @@
                     <form class="form-horizontal form-label-left" novalidate method="post">
                       <input type="hidden" name="_method" value="put">
 
-                      <span class="section">Event</span>
+                      <span class="section">Board</span>
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_id">User <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="title" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="title" required="required" type="text" {{#if form}}value="{{form.Title}}"{{/if}}>
+                          <select id="user_id" class="form-control col-md-7 col-xs-12" name="user_id" required="required">
+                            {{#each users}}
+                            <option value="{{this.ID}}" {{#if form}}{{#equal ../form.User.ID this.ID}}selected{{/equal}}{{/if}}>{{this.Name}}-{{this.City.Name}}</option>
+                            {{/each}}
+                          </select>
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="time">Time <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="profile_picture">Profile Picture <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="time" class="date-picker form-control col-md-7 col-xs-12" data-validate-length-range="3" name="time" required="required" type="text" {{#if form}}value="{{form.Time}}"{{/if}}>
+                          <input id="profile_picture" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="profile_picture" required="required" type="text" {{#if form}}value="{{form.ProfilePicture}}"{{/if}}>
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location">Location <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="position">Position <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="location" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="location" required="required" type="text" {{#if form}}value="{{form.Location}}"{{/if}}>
+                          <input id="position" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="position" required="required" type="text" {{#if form}}value="{{form.Position}}"{{/if}}>
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="content">Content <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="division">Division <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="content" class="form-control col-md-7 col-xs-12" name="content">{{#if form}}{{form.Content}}{{/if}}</textarea>
+                          <input id="division" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="division" required="required" type="text" {{#if form}}value="{{form.Division}}"{{/if}}>
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fee">Fee <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start_period">Start Period <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="fee" class="form-control col-md-7 col-xs-12" name="fee" required="required" type="number" {{#if form}}value="{{form.Fee}}"{{/if}}>
+                          <input id="start_period" class="date-picker form-control col-md-7 col-xs-12" data-validate-length-range="3" name="start_period" required="required" type="text" {{#if form}}value="{{form.StartPeriod}}"{{/if}}>
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quota">Quota <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="end_period">End Period <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="quota" class="form-control col-md-7 col-xs-12" name="quota" required="required" type="number" {{#if form}}value="{{form.Quota}}"{{/if}}>
+                          <input id="end_period" class="date-picker form-control col-md-7 col-xs-12" data-validate-length-range="3" name="end_period" required="required" type="text" {{#if form}}value="{{form.EndPeriod}}"{{/if}}>
                         </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Status<span class="required">*</span>
+                        </label>
+                        <label>
+                          <input type="checkbox" class="js-switch" name="status" {{#if form}}{{#equal form.Status "1"}}checked{{/equal}}{{/if}}/> actived
+                        </label>
                       </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
@@ -70,6 +81,7 @@
           </div>
 
           {{#section 'endscript'}}
+          <link href="/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
           <!-- FastClick -->
           <script src="/vendors/fastclick/lib/fastclick.js"></script>
           <!-- NProgress -->
@@ -79,6 +91,8 @@
 
           <script src="/js/moment/moment.min.js"></script>
           <script src="/js/datepicker/daterangepicker.js"></script>
+
+          <script src="/vendors/switchery/dist/switchery.min.js"></script>
 
           <!-- Custom Theme Scripts -->
           <script src="/build/js/custom.min.js"></script>

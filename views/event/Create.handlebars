@@ -23,7 +23,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="time">Time <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="time" class="form-control col-md-7 col-xs-12" data-validate-length-range="3" name="time" required="required" type="text" {{#if form}}value="{{form.time}}"{{/if}}>
+                          <input id="time" class="date-picker form-control col-md-7 col-xs-12" data-validate-length-range="3" name="time" required="required" type="text" {{#if form}}value="{{form.time}}"{{/if}}>
                         </div>
                       </div>
                       <div class="item form-group">
@@ -76,11 +76,22 @@
           <!-- validator -->
           <script src="/vendors/validator/validator.min.js"></script>
 
+          <script src="/js/moment/moment.min.js"></script>
+          <script src="/js/datepicker/daterangepicker.js"></script>
+
           <!-- Custom Theme Scripts -->
           <script src="/build/js/custom.min.js"></script>
 
           <!-- validator -->
           <script>
+            $(document).ready(function() {
+              $('.date-picker').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+              }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+              });
+            });
             // initialize the validator function
             validator.message.date = 'not a real date';
 
