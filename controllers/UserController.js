@@ -64,7 +64,7 @@ exports.CreateForm = function(request, response){
 
     Group.GetGroups(request, function(err, res, body){
       response.groups           = JSON.parse(body)
-      City.GetCities(request, function(err, res, body){
+      City.List(request, function(err, res, body){
         response.cities         = JSON.parse(body)
         response.render('user/Create', response)
       })
